@@ -27,13 +27,22 @@ function createUser(req, res, next){
   var email = req.body.email;
   var age = req.body.age;
 
-  db.createUser(firstName,lastName,email,age,'password',123);
+  db.createUser(firstName,lastName,email,age,'password',12345);
 
   res.send('create user : '+firstName+' '+lastName+', '+email+', '+age);
 }
 
 function retrieveUser(req, res, next){
-  res.send('retreive user: '+req.params.userID);
+  var userID = req.params.userID;
+
+  db.retrieveUser(userID,function(docs){
+    if(docs[0]){
+      res.send('retreive user: '+userID+' , name: '+docs[0].firstName+' '+docs[0].lastName);
+    }else{
+      res.send('User not found');
+    }
+  });
+
 }
 
 function updateUser(req, res, next){
@@ -47,6 +56,9 @@ function updateUser(req, res, next){
 
 function deleteUser(req, res, next){
   var userID = req.body.userID;
+
+  db.deleteUser(userID);
+
   res.send('delete user '+userID);
 }
 

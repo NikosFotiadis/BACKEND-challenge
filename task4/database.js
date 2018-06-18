@@ -41,6 +41,32 @@ function createUser(firstName, lastName, email, age, pwd, userID){
   });
 }
 
+function retrieveUser(userID, callback){
+  user.find({'userID':userID},function(err,docs){
+    if(err) throw err;
+
+    console.log('Retrieve user '+userID+' successful');
+
+    if(callback){
+      callback(docs);
+    }
+  });
+}
+
+function deleteUser(userID, callback){
+  user.deleteOne({'userID':userID},function(err,docs){
+    if(err) throw err;
+
+    console.log('Delete user '+userID+' successful');
+
+    if(callback){
+      callback(docs);
+    }
+  });
+}
+
 module.exports = {
-  createUser : createUser
+  createUser : createUser,
+  retrieveUser : retrieveUser,
+  deleteUser : deleteUser
 }
