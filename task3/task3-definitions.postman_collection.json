@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f8c084a0-dbca-4b9a-af2d-266d6af11c2e",
+		"_postman_id": "c5af47bd-faa2-4f50-bdfe-a3b8850ba114",
 		"name": "task3-definitions",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,25 +21,21 @@
 						{
 							"key": "firstname",
 							"value": "nikos",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "lastname",
 							"value": "fotiadis",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "email",
 							"value": "nikos@email.com",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "age",
 							"value": "22",
-							"description": "",
 							"type": "text"
 						}
 					]
@@ -73,31 +69,26 @@
 						{
 							"key": "email",
 							"value": "nikos@email.com",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "firstname",
 							"value": "nikos2",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "lastname",
 							"value": "fotiadis2",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "age",
 							"value": "22",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "userID",
 							"value": "1234",
-							"description": "",
 							"type": "text"
 						}
 					]
@@ -110,6 +101,29 @@
 					"port": "3000",
 					"path": [
 						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/retrieve/123",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/retrieve/123",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"retrieve",
+						"123"
 					]
 				}
 			},
@@ -131,7 +145,6 @@
 						{
 							"key": "userID",
 							"value": "25435",
-							"description": "",
 							"type": "text"
 						}
 					]
@@ -144,26 +157,6 @@
 					"port": "3000",
 					"path": [
 						"delete"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3000/retrieve/123",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "localhost:3000/retrieve/123",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"retrieve",
-						"123"
 					]
 				}
 			},

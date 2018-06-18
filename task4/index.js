@@ -50,7 +50,11 @@ function updateUser(req, res, next){
   var lastName = req.body.lastname;
   var email = req.body.email;
   var age = req.body.age;
+  var password = req.body.password;
   var userID = req.body.userID;
+
+  db.updateUser(userID,firstName,lastName,email,age,password)
+
   res.send('update user '+userID+':\nFirst name= '+firstName+'\nLast name= '+lastName+'\nemail= '+email+'\nage= '+age);
 }
 

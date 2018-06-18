@@ -65,8 +65,24 @@ function deleteUser(userID, callback){
   });
 }
 
+function updateUser(userID, firstName, lastName, email, age, password, callback){
+  user.update({'userID':userID},{ 'firstName':firstName,
+                                  'lastname':lastName,
+                                  'email':email,
+                                  'age':age,
+                                  'password':password},
+                                  function(err){
+                                    if(err) throw err;
+
+                                    if(callback){
+                                      callback();
+                                    }
+                                  });
+}
+
 module.exports = {
   createUser : createUser,
   retrieveUser : retrieveUser,
-  deleteUser : deleteUser
+  deleteUser : deleteUser,
+  updateUser : updateUser
 }
