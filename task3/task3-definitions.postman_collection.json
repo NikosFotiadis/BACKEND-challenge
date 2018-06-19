@@ -269,6 +269,77 @@
 			"response": []
 		},
 		{
+			"name": "revoke_access",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "7m2i5SM6Ddee9gpurTNq7uJQ3o4129rWrq49oVDvE7XeCr1V",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "clientid",
+						"value": "1"
+					},
+					{
+						"key": "email",
+						"value": "nikos2@email.com"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstname",
+							"value": "nikos",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "fotiadis",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "nikos@email.com",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/get_user_info",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get_user_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "update_user",
 			"request": {
 				"method": "PUT",
