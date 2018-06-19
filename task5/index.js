@@ -9,14 +9,29 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
+ * Routes to create and manage users.
+ * These routes do not use any authentication.
+ */
 app.get('/',indexPage);
 app.post('/create',createUser);
+// app.get('/retrieve_all',retrieveAllUsers);//TODO
+// app.get('/retrieve_with_email/:email',retrieveUser);//TODO
 app.get('/retrieve/:userID',retrieveUser);
 app.put('/update',updateUser);
 app.delete('/delete',deleteUser);
+/************************************************/
 
-app.get('/login',db.authenticateUser,login);
-app.get('/grant/:clientID',db.authenticateUser,db.grantAccessCode);
+/*
+ * Actuall server routes.
+ * email-password authentication is required for actions by users.
+ * clients need to get an authentication token before getting acces to user info
+ */
+app.get('/login',db.authenticateUser, login);//user login
+app.get('/grant/:clientID',db.authenticateUser, db.grantAccessCode);//user grants access to client
+app.get('/access_token/:clientID',db.authorizeAccessCode, db.getAccessToken);//client get authentication token from server
+app.get('/get_user_info',db.authorizeAccessToken, db.getUserInfo);//client gets user info from db using the authentication token
+app.get('/revoke_access/:clientID',db.authenticateUser, db.revokeAccess);//user revokes access from client
 
 app.use('',function(req, res, next){
   res.status(404).send('Page not found');

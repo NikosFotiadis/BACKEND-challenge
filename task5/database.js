@@ -24,21 +24,25 @@ var userSchema = new mongoose.Schema({
   userID : Number
 });
 
-var accessTokensSchema = new mongoose.Schema({
-  clientID : String,
-  userID : String,
-  accessToken : String
+var authTokensSchema = new mongoose.Schema({
+  email : String,
+  accessToken : String,
+  clientID : String
 });
 
 var accessGrantSchema = new mongoose.Schema({
   email : String,
   code : String,
-  clinetID : String
+  clientID : String
 });
 
 var user = mongoose.model('user', userSchema,'users');
 
 var accessGrant = mongoose.model('accessGrant',accessGrantSchema,'access_grant');
+
+var authToken = mongoose.model('authToken',authTokensSchema,'auth_tokens')
+
+/***************************************************************/
 
 function createUser(firstName, lastName, email, age, pwd, userID){
   var User = new user({
@@ -96,6 +100,7 @@ function updateUser(userID, firstName, lastName, email, age, password, callback)
                                   });
 }
 
+/***************************************************************/
 
 function authenticateUser(req, res, next){
   var credentials = auth(req);
@@ -128,16 +133,94 @@ function grantAccessCode(req, res, next){
     if(err) throw err;
 
     console.log('Access code stored successfully');
-    res.send('Granted access code to \''+clientID+'\' for \''+email+'\'');
-
+    res.send(code);
   });
 }
 
-function revokeAccess(email, clientID){}//TODO
+function authorizeAccessCode(req, res, next){
+  // console.log(req);
+  var accessCode = req.headers.authorization.split(' ')[1];
+  var clientID = req.params.clientID;
 
-function getAccessToken(email, clientID){}//TODO
+  accessGrant.find({code : accessCode, clientID : clientID},function(err,docs){
+    if(docs.length == 0){
+      res.send('Access code authentication failed');
+    }else{
+      req.email = docs[0].email;
+      next();
+    }
+  });
+}
 
-function authorizeAccessToken(email, token, clientID){}//TODO
+function getAccessToken(req, res, next){
+  var authenticationToken = rand.generate(48);
+  var email = req.email;
+  var clientID = req.params.clientID;
+
+  var newAuthToken = new authToken({
+    email : email,
+    accessToken : authenticationToken,
+    clientID : clientID
+  });
+
+  newAuthToken.save(function(err){
+    if(err) throw err;
+
+    console.log('Authentication token stores successfully');
+
+    /*delete acces grant code for this client and user*/
+    accessGrant.deleteOne({email : email, clientID : clientID},function(err, docs){
+      if(err) throw err;
+    })
+
+    /*send authentication token back to the client*/
+    res.send(authenticationToken);
+  });
+}
+
+function revokeAccess(req, res, next){
+  var email = auth(req).name;
+  var clientID = req.params.clientID;
+  authToken.deleteOne({email : email, clientID : clientID},function(err,docs){
+    if(err) throw err;
+
+    res.send('Acces revoked from client \''+clientID+'\' for user \''+email+'\'');
+  });
+}
+
+function authorizeAccessToken(req, res, next){
+  var accessToken = req.headers.authorization.split(' ')[1];
+  var email = req.headers.email;
+  var clientID = req.headers.clientid;
+  // console.log(accessToken);
+  // console.log(email);
+  // console.log(clientID);
+  // console.log(req);
+  authToken.find({accessToken : accessToken, email : email, clientID : clientID},function(err, docs){
+    if(err) throw err;
+
+    if(docs.length == 0){
+      res.send('Unauthorized action');
+    }else{
+      next();
+    }
+  })
+
+}
+
+function getUserInfo(req, res, next){
+  var email = req.headers.email;
+
+  user.find({email : email},function(err, docs){
+    if(err) throw err;
+
+    res.send( 'First name: '+docs[0].firstName+
+              '\nLast name: '+docs[0].lastname+
+              '\nemail : '+docs[0].email+
+              '\nage : '+docs[0].age);
+
+  });
+}
 
 
 module.exports = {
@@ -147,5 +230,10 @@ module.exports = {
   updateUser : updateUser,
   ////////////////////////
   authenticateUser : authenticateUser,
-  grantAccessCode : grantAccessCode
+  grantAccessCode : grantAccessCode,
+  authorizeAccessCode : authorizeAccessCode,
+  getAccessToken : getAccessToken,
+  authorizeAccessToken : authorizeAccessToken,
+  revokeAccess : revokeAccess,
+  getUserInfo : getUserInfo
 }
