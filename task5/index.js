@@ -87,7 +87,7 @@ function deleteUser(req, res, next){
   res.send('delete user '+userID);
 }
 
-function login(req, res, next){// authenticate the user using basic-auth
+function login(req, res, next){
     res.send('User login successful');
 }
 

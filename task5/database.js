@@ -3,7 +3,6 @@ var auth = require('basic-auth');
 var rand = require("random-key");
 
 mongoose.connect('mongodb://admin:admin123@localhost:27017/myappdb?authSource=admin');
-// mongoose.connect('mongodb://localhost/myappdb');
 
 mongoose.Promise = global.Promise;
 
@@ -102,6 +101,10 @@ function updateUser(userID, firstName, lastName, email, age, password, callback)
 
 /***************************************************************/
 
+/*
+ * Authenticate user with email-password
+ * using basic-auth
+ */
 function authenticateUser(req, res, next){
   var credentials = auth(req);
   var email = credentials.name;
@@ -118,6 +121,9 @@ function authenticateUser(req, res, next){
   });
 }
 
+/*
+ * Generate and store a new access code for a client
+ */
 function grantAccessCode(req, res, next){
   var email = auth(req).name;
   var clientID = req.params.clientID;
@@ -137,6 +143,9 @@ function grantAccessCode(req, res, next){
   });
 }
 
+/*
+ * Authorize access based on the access code, client id
+ */
 function authorizeAccessCode(req, res, next){
   // console.log(req);
   var accessCode = req.headers.authorization.split(' ')[1];
@@ -152,6 +161,9 @@ function authorizeAccessCode(req, res, next){
   });
 }
 
+/*
+ * Generate and store a new access token for a client
+ */
 function getAccessToken(req, res, next){
   var authenticationToken = rand.generate(48);
   var email = req.email;
@@ -178,6 +190,9 @@ function getAccessToken(req, res, next){
   });
 }
 
+/*
+ * Revoke the access granted to a client on a users data
+ */
 function revokeAccess(req, res, next){
   var email = auth(req).name;
   var clientID = req.params.clientID;
@@ -188,6 +203,9 @@ function revokeAccess(req, res, next){
   });
 }
 
+/*
+ * Authorize access based on the access token, client id
+ */
 function authorizeAccessToken(req, res, next){
   var accessToken = req.headers.authorization.split(' ')[1];
   var email = req.headers.email;
@@ -208,6 +226,9 @@ function authorizeAccessToken(req, res, next){
 
 }
 
+/*
+ * Get the personal information of a user
+ */
 function getUserInfo(req, res, next){
   var email = req.headers.email;
 
