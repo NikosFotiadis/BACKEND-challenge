@@ -138,7 +138,7 @@ function getUserInfo(req, res, next){
 
   db.findUser(email, function(docs){
     res.send( 'First name: '+docs[0].firstName+
-              '\nLast name: '+docs[0].lastname+
+              '\nLast name: '+docs[0].lastName+
               '\nemail : '+docs[0].email+
               '\nage : '+docs[0].age);
 
