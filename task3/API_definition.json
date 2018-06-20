@@ -1,0 +1,502 @@
+{
+  "id": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+  "name": "task3-definitions",
+  "description": "TODO: Add Description",
+  "order": [],
+  "folders": [
+    {
+      "id": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "name": "Misc",
+      "description": "Misc",
+      "order": [
+        "b37ac04b-6125-44af-9928-77ba588660f1",
+        "2fef7db4-452d-4c1f-b057-8d81d97e9894",
+        "c85a1d2e-993a-49c3-bc2f-e87e63c427f1",
+        "545941a5-5a5c-4a75-a94a-b96b2b227cb1",
+        "8007225a-0e40-4667-ae6d-7347a9cbaa0b",
+        "12a195e3-1dab-48bf-9062-3245558eeecc",
+        "1a13c800-e69e-4e1c-ac30-36783e4ab86a",
+        "95ef7d66-2cdb-478e-9632-6ae8df1bf5f7",
+        "58494c29-56e2-4d27-9613-4ac629be289b",
+        "b68f15f4-79f2-4fb0-81e6-9d13cbbb3d9a"
+      ],
+      "collection_id": "3593a4cc-1444-4686-b613-80aeb6f0a2e9"
+    }
+  ],
+  "requests": [
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "b37ac04b-6125-44af-9928-77ba588660f1",
+      "name": "create_user",
+      "dataMode": "urlencoded",
+      "data": [
+        {
+          "key": "firstname",
+          "value": "nikos",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "lastname",
+          "value": "fotiadis",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "email",
+          "value": "nikos@email.com",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "age",
+          "value": "22",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        }
+      ],
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "POST",
+      "pathVariables": {},
+      "url": "http://localhost:3000/create",
+      "responses": [
+        {
+          "request": "b37ac04b-6125-44af-9928-77ba588660f1",
+          "id": "a24776d9-79e2-440b-90d6-26c9f25a3a9f",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "2fef7db4-452d-4c1f-b057-8d81d97e9894",
+      "name": "login",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "GET",
+      "pathVariables": {},
+      "url": "http://localhost:3000/create",
+      "responses": [
+        {
+          "request": "2fef7db4-452d-4c1f-b057-8d81d97e9894",
+          "id": "99b08201-ff78-4812-9231-792610c484d7",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "c85a1d2e-993a-49c3-bc2f-e87e63c427f1",
+      "name": "get_access_code",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "GET",
+      "pathVariables": {},
+      "url": "http://localhost:3000/create",
+      "responses": [
+        {
+          "request": "c85a1d2e-993a-49c3-bc2f-e87e63c427f1",
+          "id": "f98679cc-1559-4c2a-9820-e656113afa1a",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "545941a5-5a5c-4a75-a94a-b96b2b227cb1",
+      "name": "get_oauth2_token",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "GET",
+      "pathVariables": {},
+      "url": "http://localhost:3000/create",
+      "responses": [
+        {
+          "request": "545941a5-5a5c-4a75-a94a-b96b2b227cb1",
+          "id": "6b07809e-3057-42f5-a43b-981e22d4da1f",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "8007225a-0e40-4667-ae6d-7347a9cbaa0b",
+      "name": "get_user_info",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\nclientid:1\r\nemail:nikos2@email.com\r\n",
+      "method": "GET",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/get_user_info",
+      "responses": [
+        {
+          "request": "8007225a-0e40-4667-ae6d-7347a9cbaa0b",
+          "id": "660317fa-3d9b-4893-aac5-d811724876fa",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        },
+        {
+          "key": "clientid",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "key": "email",
+          "value": "nikos2@email.com",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "12a195e3-1dab-48bf-9062-3245558eeecc",
+      "name": "revoke_access",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\nclientid:1\r\nemail:nikos2@email.com\r\n",
+      "method": "GET",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/get_user_info",
+      "responses": [
+        {
+          "request": "12a195e3-1dab-48bf-9062-3245558eeecc",
+          "id": "f98e4247-6ec2-4c14-bfa2-5ae0b17f9b6b",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        },
+        {
+          "key": "clientid",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "key": "email",
+          "value": "nikos2@email.com",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "1a13c800-e69e-4e1c-ac30-36783e4ab86a",
+      "name": "update_user",
+      "dataMode": "urlencoded",
+      "data": [
+        {
+          "key": "email",
+          "value": "nikos@email.com",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "firstname",
+          "value": "nikos2",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "lastname",
+          "value": "fotiadis2",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "age",
+          "value": "22",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        },
+        {
+          "key": "userID",
+          "value": "1234",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        }
+      ],
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "PUT",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/update",
+      "responses": [
+        {
+          "request": "1a13c800-e69e-4e1c-ac30-36783e4ab86a",
+          "id": "363bb8d3-d205-4a95-aaf9-f305aebfb601",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "95ef7d66-2cdb-478e-9632-6ae8df1bf5f7",
+      "name": "retrieve_user",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "method": "GET",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/retrieve/123",
+      "responses": [
+        {
+          "request": "95ef7d66-2cdb-478e-9632-6ae8df1bf5f7",
+          "id": "3598265a-7955-4bf0-b74a-56e7e8ee6cba",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "58494c29-56e2-4d27-9613-4ac629be289b",
+      "name": "retrieve_all_users",
+      "dataMode": "raw",
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "method": "GET",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/retrieve/123",
+      "responses": [
+        {
+          "request": "58494c29-56e2-4d27-9613-4ac629be289b",
+          "id": "8e1c9da5-8969-4b8f-a4f1-47acf0ddad5d",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [],
+      "pathVariableData": []
+    },
+    {
+      "folder": "d5b66966-c696-4df4-802f-6f24bb69868c",
+      "id": "b68f15f4-79f2-4fb0-81e6-9d13cbbb3d9a",
+      "name": "delete_user",
+      "dataMode": "urlencoded",
+      "data": [
+        {
+          "key": "userID",
+          "value": "25435",
+          "description": "",
+          "enabled": true,
+          "type": "text"
+        }
+      ],
+      "descriptionFormat": "markdown",
+      "description": "TODO: Add Description",
+      "headers": "Content-Type:application/x-www-form-urlencoded\r\n",
+      "method": "DELETE",
+      "currentHelper": "oAuth2",
+      "helperAttributes": {
+        "id": "oAuth2",
+        "authUrl": "http://example.com/auth",
+        "scope": "",
+        "grantType": "implicit"
+      },
+      "pathVariables": {},
+      "url": "http://localhost:3000/delete",
+      "responses": [
+        {
+          "request": "b68f15f4-79f2-4fb0-81e6-9d13cbbb3d9a",
+          "id": "642874c7-4061-4aaa-9fc7-e6d24582f215",
+          "name": "Response_200",
+          "responseCode": {
+            "code": 200,
+            "name": "200"
+          },
+          "headers": [],
+          "language": "Text"
+        }
+      ],
+      "collectionId": "3593a4cc-1444-4686-b613-80aeb6f0a2e9",
+      "queryParams": [],
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "description": ""
+        }
+      ],
+      "pathVariableData": []
+    }
+  ]
+}

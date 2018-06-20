@@ -23,8 +23,8 @@ app.delete('/delete',deleteUser);
 
 /*
  * Actuall server routes.
- * email-password authentication is required for actions by users.
- * clients need to get an authentication token before getting acces to user info
+ * Email-password authentication is required for actions by users.
+ * Clients need to get an authentication token before getting acces to user info
  */
 app.get('/login',db.authenticateUser, login);//user login
 app.get('/grant/:clientID',db.authenticateUser, db.grantAccessCode);//user grants access to client
