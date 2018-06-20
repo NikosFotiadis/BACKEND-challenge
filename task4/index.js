@@ -26,8 +26,10 @@ function createUser(req, res, next){
   var lastName = req.body.lastname;
   var email = req.body.email;
   var age = req.body.age;
+  var password = req.body.password;
+  var userID = req.body.userID;
 
-  db.createUser(firstName,lastName,email,age,'password',12345);
+  db.createUser(firstName,lastName,email,age,password,userID);
 
   res.send('create user : '+firstName+' '+lastName+', '+email+', '+age);
 }
