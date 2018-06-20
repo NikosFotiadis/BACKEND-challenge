@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var db = require("./database.js");
 var auth = require('basic-auth');
+var authorize = require('./oauth.js')
 
 var app = express();
 
@@ -26,11 +27,11 @@ app.delete('/delete',deleteUser);
  * Email-password authentication is required for actions by users.
  * Clients need to get an authentication token before getting acces to user info
  */
-app.get('/login',db.authenticateUser, login);//user login
-app.get('/grant/:clientID',db.authenticateUser, db.grantAccessCode);//user grants access to client
-app.get('/access_token/:clientID',db.authorizeAccessCode, db.getAccessToken);//client get authentication token from server
-app.get('/get_user_info',db.authorizeAccessToken, db.getUserInfo);//client gets user info from db using the authentication token
-app.get('/revoke_access/:clientID',db.authenticateUser, db.revokeAccess);//user revokes access from client
+app.get('/login',authorize.authenticateUser, login);//user login
+app.get('/grant/:clientID',authorize.authenticateUser, authorize.grantAccessCode);//user grants access to client
+app.get('/access_token/:clientID',authorize.authorizeAccessCode, authorize.getAccessToken);//client get authentication token from server
+app.get('/get_user_info',authorize.authorizeAccessToken, authorize.getUserInfo);//client gets user info from db using the authentication token
+app.get('/revoke_access/:clientID',authorize.authenticateUser, authorize.revokeAccess);//user revokes access from client
 
 app.use('',function(req, res, next){
   res.status(404).send('Page not found');

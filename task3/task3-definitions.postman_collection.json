@@ -20,7 +20,7 @@
 					"urlencoded": [
 						{
 							"key": "firstname",
-							"value": "nikos",
+							"value": "nikos5",
 							"type": "text"
 						},
 						{
@@ -30,12 +30,24 @@
 						},
 						{
 							"key": "email",
-							"value": "nikos@email.com",
+							"value": "nikos5@email.com",
 							"type": "text"
 						},
 						{
 							"key": "age",
-							"value": "22",
+							"value": "24",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "psswrd",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "userID",
+							"value": "103",
+							"description": "",
 							"type": "text"
 						}
 					]
@@ -56,6 +68,21 @@
 		{
 			"name": "login",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "nikos2@email.com",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -89,13 +116,13 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/create",
+					"raw": "localhost:3000/login",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"create"
+						"login"
 					]
 				}
 			},
@@ -104,6 +131,21 @@
 		{
 			"name": "get_access_code",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "nikos4@email.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -137,13 +179,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/create",
+					"raw": "localhost:3000/grant/client2",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"create"
+						"grant",
+						"client2"
 					]
 				}
 			},
@@ -152,6 +195,16 @@
 		{
 			"name": "get_oauth2_token",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "N4lwX5allN42wbglz6KLOU2oyq9cJgs6",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -185,13 +238,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/create",
+					"raw": "localhost:3000/access_token/client2",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"create"
+						"access_token",
+						"client2"
 					]
 				}
 			},
@@ -205,7 +259,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "7m2i5SM6Ddee9gpurTNq7uJQ3o4129rWrq49oVDvE7XeCr1V",
+							"value": "IrVi9hgpa3w5a9NHBltOTL71XO0EQHqDMe2HME1M671neGVv",
 							"type": "string"
 						},
 						{
@@ -223,11 +277,13 @@
 					},
 					{
 						"key": "clientid",
-						"value": "1"
+						"value": "client2",
+						"description": "id of the client requeting the information"
 					},
 					{
 						"key": "email",
-						"value": "nikos2@email.com"
+						"value": "nikos4@email.com",
+						"description": "email of the user for whom we request information"
 					}
 				],
 				"body": {
@@ -272,16 +328,16 @@
 			"name": "revoke_access",
 			"request": {
 				"auth": {
-					"type": "oauth2",
-					"oauth2": [
+					"type": "basic",
+					"basic": [
 						{
-							"key": "accessToken",
-							"value": "7m2i5SM6Ddee9gpurTNq7uJQ3o4129rWrq49oVDvE7XeCr1V",
+							"key": "password",
+							"value": "pwd",
 							"type": "string"
 						},
 						{
-							"key": "addTokenTo",
-							"value": "header",
+							"key": "username",
+							"value": "nikos4@email.com",
 							"type": "string"
 						}
 					]
@@ -294,11 +350,13 @@
 					},
 					{
 						"key": "clientid",
-						"value": "1"
+						"value": "1",
+						"description": "client to revoke acces for"
 					},
 					{
 						"key": "email",
-						"value": "nikos2@email.com"
+						"value": "nikos2@email.com",
+						"description": "user who revokes the access"
 					}
 				],
 				"body": {
@@ -327,13 +385,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:3000/get_user_info",
+					"raw": "localhost:3000/revoke_access/client2",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"get_user_info"
+						"revoke_access",
+						"client2"
 					]
 				}
 			},
@@ -425,14 +484,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:3000/retrieve/123",
+					"raw": "localhost:3000/retrieve_all",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"retrieve",
-						"123"
+						"retrieve_all"
 					]
 				}
 			},

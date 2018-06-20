@@ -111,148 +111,80 @@ function updateUser(userID, firstName, lastName, email, age, password, callback)
 
 /***************************************************************/
 
-/*
- * Authenticate user with email-password
- * using basic-auth
- */
-function authenticateUser(req, res, next){
-  var credentials = auth(req);
-  var email = credentials.name;
-  var password = credentials.pass;
-  user.find({'email':email},function(err, docs){
+function findUser(email,callback){
+  user.find({email : email},function(err,docs){
     if(err) throw err;
-    if(docs[0].pwd === password){
-      console.log('User authentication successful');
-      next();
-    }else{
-      console.log('User authentication failed');
-      res.send('Authentication failed');
+
+    if(callback){
+      callback(docs);
     }
   });
 }
 
-/*
- * Generate and store a new access code for a client
- */
-function grantAccessCode(req, res, next){
-  var email = auth(req).name;
-  var clientID = req.params.clientID;
-  var code = rand.generate(32);
+function saveAccessGrant(email, clientID, code, callback){
   var newAccessCode = new accessGrant({
     email : email,
     code : code,
     clientID : clientID
   });
-  console.log(code);
 
   newAccessCode.save(function(err){
     if(err) throw err;
 
-    console.log('Access code stored successfully');
-    res.send(code);
-  });
-}
-
-/*
- * Authorize access based on the access code, client id
- */
-function authorizeAccessCode(req, res, next){
-  // console.log(req);
-  var accessCode = req.headers.authorization.split(' ')[1];
-  var clientID = req.params.clientID;
-
-  accessGrant.find({code : accessCode, clientID : clientID},function(err,docs){
-    if(docs.length == 0){
-      res.send('Access code authentication failed');
-    }else{
-      req.email = docs[0].email;
-      next();
+    if(callback){
+      callback(true);
     }
   });
 }
 
-/*
- * Generate and store a new access token for a client
- */
-function getAccessToken(req, res, next){
-  var authenticationToken = rand.generate(48);
-  var email = req.email;
-  var clientID = req.params.clientID;
+function findAccessGrant(clientID, accessCode, callback){
+  // console.log();
+  accessGrant.find({code : accessCode, clientID : clientID},function(err,docs){
+    // console.log(docs);
+    if(callback){
+      callback(docs);
+    }
+  });
+}
 
+function saveAccessToken(email, clientID, authorizationToken, callback){
   var newAuthToken = new authToken({
     email : email,
-    accessToken : authenticationToken,
+    accessToken : authorizationToken,
     clientID : clientID
   });
 
   newAuthToken.save(function(err){
     if(err) throw err;
 
-    console.log('Authentication token stores successfully');
-
-    /*delete acces grant code for this client and user*/
     accessGrant.deleteOne({email : email, clientID : clientID},function(err, docs){
       if(err) throw err;
-    })
-
-    /*send authentication token back to the client*/
-    res.send(authenticationToken);
+      if(callback){
+        callback(true);
+      }
+    });
   });
 }
 
-/*
- * Revoke the access granted to a client on a users data
- */
-function revokeAccess(req, res, next){
-  var email = auth(req).name;
-  var clientID = req.params.clientID;
+function deleteAccessToken(email, clientID, callback){
   authToken.deleteOne({email : email, clientID : clientID},function(err,docs){
     if(err) throw err;
 
-    res.send('Acces revoked from client \''+clientID+'\' for user \''+email+'\'');
+    if(callback){
+      callback(true);
+    }
   });
 }
 
-/*
- * Authorize access based on the access token, client id
- */
-function authorizeAccessToken(req, res, next){
-  var accessToken = req.headers.authorization.split(' ')[1];
-  var email = req.headers.email;
-  var clientID = req.headers.clientid;
-  // console.log(accessToken);
-  // console.log(email);
-  // console.log(clientID);
-  // console.log(req);
+function retreiveAccessToken(email, clientID, accessToken, callback){
   authToken.find({accessToken : accessToken, email : email, clientID : clientID},function(err, docs){
     if(err) throw err;
 
-    if(docs.length == 0){
-      res.send('Unauthorized action');
-    }else{
-      next();
+    if(callback){
+      callback(docs);
     }
-  })
-
-}
-
-/*
- * Get the personal information of a user
- */
-function getUserInfo(req, res, next){
-  var email = req.headers.email;
-
-  user.find({email : email},function(err, docs){
-    if(err) throw err;
-
-    res.send( 'First name: '+docs[0].firstName+
-              '\nLast name: '+docs[0].lastname+
-              '\nemail : '+docs[0].email+
-              '\nage : '+docs[0].age);
-
   });
 }
-
 
 module.exports = {
   createUser : createUser,
@@ -261,11 +193,10 @@ module.exports = {
   updateUser : updateUser,
   getAllUsers : getAllUsers,
   ////////////////////////
-  authenticateUser : authenticateUser,
-  grantAccessCode : grantAccessCode,
-  authorizeAccessCode : authorizeAccessCode,
-  getAccessToken : getAccessToken,
-  authorizeAccessToken : authorizeAccessToken,
-  revokeAccess : revokeAccess,
-  getUserInfo : getUserInfo
-}
+  findUser : findUser,
+  saveAccessGrant : saveAccessGrant,
+  findAccessGrant : findAccessGrant,
+  saveAccessToken : saveAccessToken,
+  deleteAccessToken : deleteAccessToken,
+  retreiveAccessToken : retreiveAccessToken
+};
