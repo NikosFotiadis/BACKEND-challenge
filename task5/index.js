@@ -15,8 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  */
 app.get('/',indexPage);
 app.post('/create',createUser);
-// app.get('/retrieve_all',retrieveAllUsers);//TODO
-// app.get('/retrieve_with_email/:email',retrieveUser);//TODO
+app.get('/retrieve_all',retrieveAllUsers);
 app.get('/retrieve/:userID',retrieveUser);
 app.put('/update',updateUser);
 app.delete('/delete',deleteUser);
@@ -42,13 +41,21 @@ function indexPage(req, res, next){
   res.send('HELLO WORLD');
 }
 
+function retrieveAllUsers(req, res, next){
+  db.getAllUsers(function(docs){
+    res.send(docs);
+  });
+}
+
 function createUser(req, res, next){
   var firstName = req.body.firstname;
   var lastName = req.body.lastname;
   var email = req.body.email;
   var age = req.body.age;
+  var password = req.body.password;
+  var userID = req.body.userID;
 
-  db.createUser(firstName,lastName,email,age,'password',1234);
+  db.createUser(firstName,lastName,email,age,password,userID);
 
   res.send('create user : '+firstName+' '+lastName+', '+email+', '+age);
 }

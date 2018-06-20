@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:3000/create",
+			"name": "create_user",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -393,7 +393,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/retrieve/123",
+			"name": "retrieve_user",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -416,7 +416,30 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/delete",
+			"name": "retrieve_all_users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/retrieve/123",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"retrieve",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_user",
 			"request": {
 				"method": "DELETE",
 				"header": [

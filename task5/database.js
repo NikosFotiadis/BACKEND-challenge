@@ -72,6 +72,16 @@ function retrieveUser(userID, callback){
   });
 }
 
+function getAllUsers(callback){
+  user.find({},function(err, docs){
+    if(err) throw err;
+
+    if(callback){
+      callback(docs);
+    }
+  });
+}
+
 function deleteUser(userID, callback){
   user.deleteOne({'userID':userID},function(err,docs){
     if(err) throw err;
@@ -249,6 +259,7 @@ module.exports = {
   retrieveUser : retrieveUser,
   deleteUser : deleteUser,
   updateUser : updateUser,
+  getAllUsers : getAllUsers,
   ////////////////////////
   authenticateUser : authenticateUser,
   grantAccessCode : grantAccessCode,
